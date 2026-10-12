@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * GSS - New file added for demo
+ * GSS - New file added for DevOps demo
  */
 package org.springframework.samples.petclinic.customers.model;
 
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
  * Orchestrates owner searches.
  */
 @Service
-class OwnerService {
+public class OwnerService {
 
 	private static final Logger log = LoggerFactory.getLogger(OwnerService.class);
 
@@ -37,7 +37,7 @@ class OwnerService {
 		this.repository = repository;
 	}
 
-	List<Owner> searchByCity(String city, String requestedBy) {
+	public List<Owner> searchByCity(String city, String requestedBy) {
 		List<Owner> owners = this.repository.searchByCity(city);
 		for (Owner owner : owners) {
 			log.info("Search by city={} requestedBy={} matched owner={} email={}", city, requestedBy,
