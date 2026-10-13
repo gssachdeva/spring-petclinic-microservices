@@ -62,7 +62,7 @@ jobs:
           claude -p "Review the changes between ${BASE_SHA} and ${HEAD_SHA} using the code-reviewer agent and the review-standards skill. Output only JSON matching schemas/review.schema.json." \
             --allowedTools "Read" "Grep" "Glob" "Bash(git diff:*)" "Bash(git log:*)" \
             --output-format json \
-            --max-turns 12 
+            --max-turns 12 \
             --permission-mode bypassPermissions > raw.json
           
           echo "==== GSS After Claude command ===="
