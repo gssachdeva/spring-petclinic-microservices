@@ -46,12 +46,12 @@ jobs:
           #ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          echo "==== GSS Before Curl command ===="
-          curl -sS -m 30 -w "\nHTTP %{http_code}\n" "$ANTHROPIC_BASE_URL/v1/messages" \
-            -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
-            -H "content-type: application/json" \
-            -d "{\"max_tokens\":16,\"messages\":[{\"role\":\"user\",\"content\":\"ping\"}]}"
+          #echo "==== GSS Before Curl command ===="
+          #curl -sS -m 30 -w "\nHTTP %{http_code}\n" "$ANTHROPIC_BASE_URL/v1/messages" \
+          #  -H "x-api-key: $ANTHROPIC_API_KEY" \
+          #  -H "anthropic-version: 2023-06-01" \
+          #  -H "content-type: application/json" \
+          #  -d "{\"max_tokens\":16,\"messages\":[{\"role\":\"user\",\"content\":\"ping\"}]}"
           
           echo "==== GSS Before Claude command ===="
           #claude -p "Review the changes between ${BASE_SHA} and ${HEAD_SHA} using the code-reviewer agent and the review-standards skill. Output only JSON matching schemas/review.schema.json." \
