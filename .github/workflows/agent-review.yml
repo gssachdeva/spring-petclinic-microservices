@@ -72,14 +72,16 @@ jobs:
           echo "=== END RAW RESPONSE ==="
 
           jq '{is_error, subtype, num_turns, result: (.result | tostring | .[0:300])}' raw.json
-          jq -r '.result' raw.json > review.json      # the agent's JSON is in the .result field
+          #jq -r '.result' raw.json > review.json      # the agent's JSON is in the .result field
+          jq -r '.result' raw.json | perl -0777 -ne 'print $1 if /(\{.*\})/s' > review.json
 
           # Debug: show extracted review.json
           echo "=== REVIEW JSON ===" 
           jq '.' review.json
           echo "=== END REVIEW JSON ==="
 
-          jq -e '.findings' review.json > /dev/null   # fail the job if the output is not valid JSON
+          #jq -e '.findings' review.json > /dev/null   # fail the job if the output is not valid JSON
+          jq -e '.findings' review.json > /dev/null || { echo "Review output was not valid JSON:" >&2; head -c 1500 review.json >&2; exit 1; }
 
       - uses: actions/upload-artifact@v4
         with:
