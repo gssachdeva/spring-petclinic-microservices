@@ -12,8 +12,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * GSS - New file added for DevOps demo
  */
 package org.springframework.samples.petclinic.owner;
+
+import org.springframework.samples.petclinic.customers.model.OwnerSearchController;
+import org.springframework.samples.petclinic.customers.model.OwnerService;
+import org.springframework.samples.petclinic.customers.model.Owner;
+import org.springframework.samples.petclinic.customers.CustomersServiceApplication;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -26,15 +32,20 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+//import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 
 @WebMvcTest(OwnerSearchController.class)
+@ContextConfiguration(classes = CustomersServiceApplication.class)
 class OwnerSearchControllerTests {
 
 	@Autowired
 	private MockMvc mockMvc;
+	//private AutoConfigureMockMvc mockMvc;
 
 	@MockitoBean
 	private OwnerService ownerService;
